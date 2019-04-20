@@ -21,7 +21,7 @@
     "pretty-quick": "^1.10.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon --exec babel-node index.js",
     "prettier": "prettier --write '**/*.js'"
   }
 }
