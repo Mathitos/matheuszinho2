@@ -1,13 +1,17 @@
 import Discord from 'discord.js'
-import { CLIENT_SECRET_KEY } from './config'
+import dotenv from 'dotenv'
 
-const client = new Discord.Client()
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+dotenv.config()
+const Matheuszinho = new Discord.Client()
+
+Matheuszinho.on('ready', () => {
+  console.log('Oi, estou pronto para ajudar meus amiguinhos!!!')
+  Matheuszinho.user.setActivity('Quero Ajudar')
 })
-client.on('message', msg => {
+Matheuszinho.on('message', msg => {
   if (msg.content === 'ping') {
     msg.reply('Pong!')
   }
 })
-client.login(CLIENT_SECRET_KEY)
+
+Matheuszinho.login(process.env.CLIENT_SECRET_KEY)
