@@ -24,4 +24,10 @@ Matheuszinho.on('message', message => {
   handleCommands(Matheuszinho.user, message)
 })
 
+Matheuszinho.on('guildMemberAdd', member => {
+  member.send(
+    `Welcome to Ambush server! I'm MAtheuszinho and love to help, to know what I can do for you type !help in any channel. Have fun 😀`,
+  )
+})
+
 Matheuszinho.login(process.env.CLIENT_SECRET_KEY)
