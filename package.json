@@ -23,7 +23,7 @@
     "rimraf": "^2.6.3"
   },
   "scripts": {
-    "start": "npm run build && node dist/index.js",
+    "start": "node dist/index.js",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "dev": "nodemon --exec babel-node index.js",
     "prettier": "prettier --write '**/*.js'"
