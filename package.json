@@ -1,0 +1,10 @@
+{
+  "name": "matheusinho2",
+  "version": "1.0.0",
+  "description": "discord bot server",
+  "main": "index.js",
+  "repository": "https://mathitos.github.io/matheusinho2",
+  "author": "Matheus Anzzulin",
+  "license": "MIT",
+  "private": false
+}
