@@ -1,4 +1,8 @@
+import djModule from './dj-module'
+
 const command_key = '!'
+
+const djBot = new djModule()
 
 const commands = (user, message) => {
   if (message.author.equals(user)) return
@@ -11,6 +15,19 @@ const commands = (user, message) => {
   switch (args[0].toLowerCase()) {
     case 'ping':
       message.channel.send('pong!')
+      break
+    case 'play':
+      if (!args[1])
+        message.channel.send('You need to give me a link for your song...')
+      if (!message.member.voiceChannel)
+        message.channel.send(
+          'You need to be in a voice channel for me play your song...',
+        )
+      if (!message.guild.voiceConnection) {
+        djBot.addToPlaylist(args[1])
+        if (!djBot.isPlaying())
+          djBot.connectToAudioChannel(message.member.voiceChannel)
+      }
       break
   }
 }
