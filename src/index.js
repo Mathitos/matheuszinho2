@@ -1,7 +1,9 @@
 import discord from 'discord.js'
-import dotenv from 'dotenv'
 import handleCommands from './commands'
 
+if (process.env.NODE_ENV !== 'production') {
+  const dotenv = require('dotenv').load()
+}
 console.log(
   '        :::   :::       ::: ::::::::::: :::    ::: :::::::::: :::    :::  :::::::: ::::::::: ::::::::::: ::::    ::: :::    :::  :::::::: \n' +
     '      :+:+: :+:+:    :+: :+:   :+:     :+:    :+: :+:        :+:    :+: :+:    :+:     :+:      :+:     :+:+:   :+: :+:    :+: :+:    :+: \n' +
@@ -12,7 +14,6 @@ console.log(
     '###       ### ###     ### ###     ###    ### ##########  ########   ######## ######### ########### ###    #### ###    ###  ########       \n',
 )
 
-dotenv.config()
 const Matheuszinho = new discord.Client()
 
 Matheuszinho.on('ready', () => {
