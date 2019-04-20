@@ -2,7 +2,7 @@ import discord from 'discord.js'
 import handleCommands from './commands'
 
 if (process.env.NODE_ENV !== 'production') {
-  const dotenv = require('dotenv').load()
+  const dotenv = require('dotenv').config()
 }
 console.log(
   '        :::   :::       ::: ::::::::::: :::    ::: :::::::::: :::    :::  :::::::: ::::::::: ::::::::::: ::::    ::: :::    :::  :::::::: \n' +
