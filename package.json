@@ -22,7 +22,9 @@
     "pretty-quick": "^1.10.0"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js",
+    "start": "npm run build && node dist/index.js",
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "dev": "nodemon --exec babel-node index.js",
     "prettier": "prettier --write '**/*.js'"
   }
 }
