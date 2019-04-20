@@ -1,6 +1,6 @@
 import discord from 'discord.js'
 import dotenv from 'dotenv'
-import handleCommands from './src/commands'
+import handleCommands from './commands'
 
 console.log(
   '        :::   :::       ::: ::::::::::: :::    ::: :::::::::: :::    :::  :::::::: ::::::::: ::::::::::: ::::    ::: :::    :::  :::::::: \n' +
