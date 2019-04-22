@@ -17,29 +17,28 @@ export default class DjModule {
   }
 
   connectToAudioChannel(voiceChannel) {
+    const thisBot = this
     voiceChannel
       .join()
       .then(connection => {
-        play(connection)
+        play(connection, thisBot)
       })
       .catch(console.error)
   }
 }
 
-async function play(connection) {
-  const url = 'https://www.youtube.com/watch?v=jDCOPqWt58c'
+async function play(connection, bot) {
   const streamOptions = { seek: 0, volume: 1 }
 
-  const audioStream = await ytdl(url, { filter: 'audioonly' })
+  const audioStream = await ytdl(bot.playlist[0], { filter: 'audioonly' })
 
   const dispatcher = connection.play(audioStream)
 
-  dispatcher.on('debug', info => console.log(info))
-
-  dispatcher.on('end', reason => {
-    console.log(reason)
-    connection.disconnect()
+  dispatcher.on('finish', reason => {
+    console.log(`disconect from voice: ${reason}`)
+    bot.playlist.shift()
+    if (bot.playlist[0]) play(connection, bot)
+    else connection.disconnect()
   })
-
   dispatcher.on('error', console.error)
 }
