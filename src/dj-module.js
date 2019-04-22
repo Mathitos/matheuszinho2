@@ -17,9 +17,6 @@ export default class DjModule {
   }
 
   connectToAudioChannel(voiceChannel) {
-    const ytdl = require('ytdl-core')
-    const streamOptions = { seek: 0, volume: 1 }
-
     voiceChannel
       .join()
       .then(connection => {
@@ -29,16 +26,22 @@ export default class DjModule {
   }
 }
 
-function play(connection) {
+async function play(connection) {
   const url = 'https://www.youtube.com/watch?v=jDCOPqWt58c'
   const streamOptions = { seek: 0, volume: 1 }
 
-  const audioStream = ytdl(url, { filter: 'audioonly' })
+  const audioStream = await ytdl(url, { filter: 'audioonly' })
 
-  const dispatcher = connection
-    .playStream(audioStream, streamOptions)
-    .on('end', function() {
-      console.log('acabou')
-      // connection.disconnect()
-    })
+  const dispatcher = connection.playFile(
+    '../resources/christina-grimmie-singing-demons-by-imagine-dragons.mp3',
+  )
+
+  dispatcher.on('debug', info => console.log(info))
+
+  dispatcher.on('end', reason => {
+    console.log(reason)
+    connection.disconnect()
+  })
+
+  dispatcher.on('error', console.error)
 }
