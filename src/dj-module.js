@@ -32,9 +32,7 @@ async function play(connection) {
 
   const audioStream = await ytdl(url, { filter: 'audioonly' })
 
-  const dispatcher = connection.playFile(
-    '../resources/christina-grimmie-singing-demons-by-imagine-dragons.mp3',
-  )
+  const dispatcher = connection.play(audioStream)
 
   dispatcher.on('debug', info => console.log(info))
 

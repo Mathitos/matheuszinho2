@@ -19,14 +19,15 @@ const commands = (user, message) => {
     case 'play':
       if (!args[1])
         message.channel.send('You need to give me a link for your song...')
-      if (!message.member.voiceChannel)
+      if (!message.member.voice.channel)
         message.channel.send(
           'You need to be in a voice channel for me play your song...',
         )
       if (!message.guild.voiceConnection) {
         djBot.addToPlaylist(args[1])
-        if (!djBot.isPlaying())
-          djBot.connectToAudioChannel(message.member.voiceChannel)
+        if (!djBot.isPlaying()) {
+          djBot.connectToAudioChannel(message.member.voice.channel)
+        }
       }
       break
   }
